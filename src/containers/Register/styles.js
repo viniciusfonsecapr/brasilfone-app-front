@@ -37,7 +37,10 @@ export const ContainerItems = styled.div`
     border-radius: 12px;
     margin: 0 275px 279px 269px;
 
-    /* span {
+
+  
+
+    span {
       position: absolute;
       left: 344px;
       top: 254px;
@@ -50,9 +53,10 @@ export const ContainerItems = styled.div`
           opacity: 0.8;
         }
       }
-    } */
+    }
+
   }
-`;
+`
 
 export const H1 = styled.p`
   padding-top: 64px;

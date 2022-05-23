@@ -25,30 +25,40 @@ export const ContainerBackgrounds = styled.div`
 
 export const ContainerItems = styled.div`
   display: inline-block;
+  position: absolute;
+  top: 293px;
+  width: 416px;
+  height: 520px;
+  background: #e5e5e5;
+  box-shadow: 3px 3px 11px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  margin: 0 275px 279px 269px;
 
-  div {
+  span {
     position: absolute;
-    top: 293px;
-    width: 416px;
-    height: 508px;
-    background: #e5e5e5;
-    box-shadow: 3px 3px 11px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    margin: 0 275px 279px 269px;
+    left: 81.93%;
+    right: 17.24%;
+    top: 49.22%;
+    bottom: 49.77%;
 
-    span {
-      position: absolute;
-      left: 344px;
-      top: 254px;
-      bottom: 273px;
-      right: 56px;
-
-      img {
-        &:hover {
-          cursor: pointer;
-          opacity: 0.8;
-        }
+    img {
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
       }
+    }
+  }
+  form {
+    div {
+      margin-left: 48px;
+      margin-top: 10px;
+      width: 320px;
+      height: 50px;
+
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 15px;
+      color: rgba(235, 60, 75, 0.7);
     }
   }
 `;
@@ -71,7 +81,7 @@ export const Label = styled.label`
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  color: #123d68;
+  color: ${(props) => (props.error ? "#CC1717" : "#123d68")};
 `;
 export const Input = styled.input`
   margin: 0 48px 0 48px;
@@ -82,15 +92,6 @@ export const Input = styled.input`
   border: ${(props) =>
     props.error ? "2px solid #CC1717;" : "1px solid #3D454C"};
   border-radius: 6px;
-`;
-
-export const ErrorMessage = styled.p`
-  margin-left: 48px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  color: #cc1717;
-  margin-top: 6px;
 `;
 
 export const Button = styled.button`

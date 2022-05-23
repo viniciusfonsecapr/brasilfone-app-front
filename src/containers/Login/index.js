@@ -7,19 +7,24 @@ import { useUser } from '../../hooks/UserContext'
 import apiBrasilFone from "../../services/api";
 import { Link } from 'react-router-dom'
 
+
+
+
+
 import Logo from '../../assets/marca-disparopro.svg'
 import Background2 from '../../assets/background2.png'
 import Icon from '../../assets/icon-eye.png'
 
-import { Container, ContainerBackgrounds, ContainerItems, H1, Label, Input, Button, SignUp, ErrorMessage , SignUpText } from './styles'
+import { Container, ContainerBackgrounds, ContainerItems, H1, Label, Input, Button, SignUp, SignUpText } from './styles'
+
 
 function Login() {
 
   const {putUserData } = useUser()
 
   const schema = Yup.object().shape({
-    email: Yup.string().email("Digite um e-mail válido").required("O e-mail é obrigatorio"),
-    password: Yup.string("Digite uma senha válida").required("A Senha é obrigatoria").min(6,"A senha deve ter pelo menos 6 digitos"),
+    email: Yup.string().email("Digite um E-mail válido").required("O E-mail é obrigatorio"),
+    password: Yup.string("Digite uma senha válida").required("A Senha é Obrigatoria").min(6,"A senha deve ter pelo menos 6 digitos"),
   })
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
@@ -31,11 +36,9 @@ function Login() {
       apiBrasilFone.post('sessions', {
         email: clientData.email,
         password: clientData.password
-      }),
-      {
-        pending: 'Verificando seus dados',
-        success: 'Seja vindo(a)',
-        error: 'Verifique seu email e senha🤯'
+      }),{
+        success: 'Seja bem vindo',
+        error: 'Verique email e senha'
       }
 
     )
@@ -44,6 +47,8 @@ function Login() {
    
   }
 
+
+
   return (
     <Container>
 
@@ -51,28 +56,28 @@ function Login() {
         <img id="logo" src={Logo} alt="background"></img><br></br>
         <img id="background2" src={Background2} alt="background2"></img>
       </ContainerBackgrounds>
-
       <ContainerItems>
-        <div>
           <H1>Login</H1>
+          
         <form noValidate onSubmit={handleSubmit(onSubmit)}>
-          <Label>E-mail</Label>
+          <Label error={errors.email?.message}>E-mail ou Celular </Label>
           <Input type="email"  {...register("email")} error={errors.email?.message}></Input>
-          <ErrorMessage>{errors.email?.message}</ErrorMessage>
-
-
-          <Label>Senha</Label>
+          
+          <Label error={errors.email?.message}>Senha</Label>
           <Input type="password" {...register("password")} error={errors.password?.message} ></Input>
           <span className="icon"><img src={Icon} alt="icon-eye"></img></span>
-          <ErrorMessage>{errors.password?.message}</ErrorMessage>
-
+          <div>
+            <p>{errors.email?.message }</p><p>{errors.password?.message}</p>
+          </div>
+      
           <Button type="submit">Conectar</Button>
-          </form>
+          
           <SignUp><Link to="/register">Ainda não é cliente Disparo Pro?</Link></SignUp>
           <SignUpText > <Link to="/register">Criar Conta</Link></SignUpText>
-        </div>
-
+          </form>
+       
       </ContainerItems>
+   
     </Container>
   );
 }

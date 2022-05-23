@@ -7,11 +7,16 @@ import { useUser } from '../../hooks/UserContext'
 import apiBrasilFone from "../../services/api";
 import { Link } from 'react-router-dom'
 
+
+
+
 import Logo from '../../assets/marca-disparopro.svg'
 import Background2 from '../../assets/background2.png'
 import Icon from '../../assets/icon-eye.png'
 
 import { Container ,ContainerBackgrounds, ContainerItems, H1, Label, Input,InputTerms , PolicyPrivacy, TextOffer , InputOffer1 , InputOffer2, LabelRadio ,Button, SignIn, ErrorMessage , SignInText } from './styles'
+
+
 
 function Register() {
 
@@ -20,7 +25,7 @@ function Register() {
   const schema = Yup.object().shape({
     name: Yup.string().required("Nome é obrigatorio"),
     email: Yup.string().email("Digite um e-mail válido").required("O e-mail é obrigatorio"),
-    
+    number: Yup.string().required('Número obrigatorio').min(8,'Telefone precisa ter no mínimo 9 caracteres'),
     password: Yup.string("Digite uma senha válida").required("A Senha é obrigatoria").min(6,"A senha deve ter pelo menos 6 digitos"),
     confirmPassword: Yup.string("Digite uma senha válida").required("A Senha é obrigatoria").oneOf([Yup.ref('password')], 'As senhas devem ser iguais'),
   })
@@ -34,7 +39,7 @@ function Register() {
       apiBrasilFone.post('users', {
         name: clientData.name,
         email: clientData.email,
-        
+        number: clientData.number,
         password: clientData.password
       }),
       {
@@ -49,19 +54,20 @@ function Register() {
    
   }
 
+
   return (
     <Container>
-
+       
       <ContainerBackgrounds>
         <img id="logo" src={Logo} alt="background"></img><br></br>
         <img id="background2" src={Background2} alt="background2"></img>
       </ContainerBackgrounds>
 
       <ContainerItems>
+    
         <div>
           <H1>Cadastre-se</H1>
         <form noValidate onSubmit={handleSubmit(onSubmit)}>
-
         <Label>Nome</Label>
           <Input type="text"  {...register("name")} error={errors.name?.message}></Input>
           <ErrorMessage>{errors.name?.message}</ErrorMessage>
@@ -71,7 +77,7 @@ function Register() {
           <Input type="email"  {...register("email")} error={errors.email?.message}></Input>
           <ErrorMessage>{errors.email?.message}</ErrorMessage>
 
-          
+         
           <Label>Número</Label>
           <Input type="tel"  {...register("number")} error={errors.number?.message}></Input>
           <ErrorMessage>{errors.number?.message}</ErrorMessage>
@@ -83,7 +89,7 @@ function Register() {
 
           <Label>Repetir Senha</Label>
           <Input type="password" {...register("confirmPassword")} error={errors.confirmPassword?.message} />
-         
+          
           <ErrorMessage>{errors.confirmPassword?.message}</ErrorMessage>
 
           <InputTerms type="radio"></InputTerms>
