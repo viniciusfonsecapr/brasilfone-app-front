@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from "react-dom/client";
 import { ToastContainer } from 'react-toastify';
 
 
@@ -8,8 +8,10 @@ import GlobalStyles from './styles/globalStyles'
 import { UserProvider } from './hooks/UserContext'
 
 
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
-ReactDOM.render(
+root.render(
+
   <>
   <UserProvider>
     <Routes />
@@ -18,5 +20,6 @@ ReactDOM.render(
     <GlobalStyles />
   </>,
 
-  document.getElementById('root')
 )
+
+

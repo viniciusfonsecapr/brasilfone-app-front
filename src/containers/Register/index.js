@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { useUser } from '../../hooks/UserContext'
 import apiBrasilFone from "../../services/api";
 import { Link } from 'react-router-dom'
-
+import ReactPhone from '../../components/PhoneReact';
 
 
 
@@ -39,7 +39,7 @@ function Register() {
       apiBrasilFone.post('users', {
         name: clientData.name,
         email: clientData.email,
-        number: clientData.number,
+        number: clientData.string,
         password: clientData.password
       }),
       {
@@ -65,9 +65,9 @@ function Register() {
 
       <ContainerItems>
     
-        <div>
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
           <H1>Cadastre-se</H1>
-        <form noValidate onSubmit={handleSubmit(onSubmit)}>
+       
         <Label>Nome</Label>
           <Input type="text"  {...register("name")} error={errors.name?.message}></Input>
           <ErrorMessage>{errors.name?.message}</ErrorMessage>
@@ -79,7 +79,7 @@ function Register() {
 
          
           <Label>Número</Label>
-          <Input type="tel"  {...register("number")} error={errors.number?.message}></Input>
+          <ReactPhone  {...register("number")} error={errors.number?.message}></ReactPhone>
           <ErrorMessage>{errors.number?.message}</ErrorMessage>
 
           <Label>Senha</Label>
@@ -103,10 +103,10 @@ function Register() {
           
 
           <Button type="submit">Cadastrar</Button>
-          </form>
+          
           <SignIn><Link to="/login">Já é cliente Disparo Pro?</Link></SignIn>
           <SignInText > <Link to="/login">Fazer Login</Link></SignInText>
-        </div>
+          </form>
 
       </ContainerItems>
     </Container>

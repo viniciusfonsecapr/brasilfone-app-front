@@ -1,5 +1,4 @@
 import styled from "styled-components";
-  
 
 import Background from "../../assets/background.png";
 
@@ -26,37 +25,30 @@ export const ContainerBackgrounds = styled.div`
 
 export const ContainerItems = styled.div`
   display: inline-block;
+  position: absolute;
+  top: 142px;
+  width: 416px;
+  height: 781px;
+  background: #e5e5e5;
+  box-shadow: 3px 3px 11px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  margin: 0 275px 279px 269px;
 
-  div {
+  span {
     position: absolute;
-    top: 142px;
-    width: 416px;
-    height: 781px;
-    background: #e5e5e5;
-    box-shadow: 3px 3px 11px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    margin: 0 275px 279px 269px;
+    left: 344px;
+    top: 254px;
+    bottom: 273px;
+    right: 56px;
 
-
-  
-
-    span {
-      position: absolute;
-      left: 344px;
-      top: 254px;
-      bottom: 273px;
-      right: 56px;
-
-      img {
-        &:hover {
-          cursor: pointer;
-          opacity: 0.8;
-        }
+    img {
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
       }
     }
-
   }
-`
+`;
 
 export const H1 = styled.p`
   padding-top: 64px;
@@ -96,54 +88,49 @@ export const ErrorMessage = styled.p`
   line-height: 16px;
   color: #cc1717;
   margin-top: 6px;
-`
+`;
 export const InputTerms = styled.input`
-cursor: pointer;
-margin-top: 15px;
-margin-left: 48px;
-`
-export const PolicyPrivacy = styled.p `
-cursor: pointer;
-position: absolute;
-top: 505px;
-left: 82px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-left: 48px;
+`;
+export const PolicyPrivacy = styled.p`
+  cursor: pointer;
+  position: absolute;
+  top: 487px;
+  left: 82px;
 
-font-style: normal;
-font-weight: 400;
-font-size: 13px;
-line-height: 15px;
-color: #3D454C;
-
-`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: #3d454c;
+`;
 
 export const TextOffer = styled.p`
-margin: 18px 48px;
-font-weight: 400;
-font-size: 13px;
-line-height: 15px;
-color: #3D454C;
-`
+  margin: 18px 48px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: #3d454c;
+`;
 
 export const InputOffer1 = styled.input`
-cursor: pointer;
-margin-left: 140px;
-
-
-`
+  cursor: pointer;
+  margin-left: 140px;
+`;
 export const InputOffer2 = styled.input`
-cursor: pointer;
-margin-left: 15px;
-
-`
+  cursor: pointer;
+  margin-left: 15px;
+`;
 export const LabelRadio = styled.label`
-cursor: pointer;
-margin-left: 8px;
-font-weight: 400;
-font-size: 16px;
-line-height: 19px;
-color: #123D68;
-
-`
+  cursor: pointer;
+  margin-left: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #123d68;
+`;
 
 export const Button = styled.button`
   display: block;

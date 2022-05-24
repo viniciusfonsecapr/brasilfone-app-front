@@ -34,6 +34,40 @@ export const ContainerItems = styled.div`
   border-radius: 12px;
   margin: 0 275px 279px 269px;
 
+  .errorInput {
+    margin-top: 10px;
+    width: 320px;
+    height: 50px;
+
+    background: rgba(235, 60, 75, 0.15);
+    border: 1px solid #e60b1e;
+    border: none;
+    border-radius: 6px;
+
+   
+
+    #containerError {
+      position: absolute;
+      margin: 8px 0 8px 8px;
+      width: 2px;
+      height: 34px;
+      background: rgba(235, 60, 75, 0.7);
+    }
+
+    img {
+      position: absolute;
+      margin: 15px 0 15px 16px;
+      
+    } 
+    p {
+      position: absolute;
+      margin: 20px 0 17px 44px;
+      color: rgba(235, 60, 75, 0.7);
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 15px;
+    }
+  }
   span {
     position: absolute;
     left: 81.93%;
@@ -92,6 +126,7 @@ export const Input = styled.input`
   border: ${(props) =>
     props.error ? "2px solid #CC1717;" : "1px solid #3D454C"};
   border-radius: 6px;
+  outline: none;
 `;
 
 export const Button = styled.button`
