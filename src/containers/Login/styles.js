@@ -35,7 +35,7 @@ export const ContainerItems = styled.div`
   margin: 0 275px 279px 269px;
 
   .errorInput {
-    margin-top: 10px;
+    margin-top:-10px;
     width: 320px;
     height: 50px;
 
@@ -119,15 +119,17 @@ export const Label = styled.label`
 `;
 export const Input = styled.input`
   margin: 0 48px 0 48px;
-  padding-left: 5px;
+  padding-left: 8px;
+  font-size: 16px;
   width: 320px;
   height: 40px;
   background: #ffffff;
   border: ${(props) =>
-    props.error ? "2px solid #CC1717;" : "1px solid #3D454C"};
+    props.error  ? "2px solid #CC1717" : "1px solid #3D454C;"};
   border-radius: 6px;
   outline: none;
 `;
+
 
 export const Button = styled.button`
   display: block;
@@ -135,7 +137,6 @@ export const Button = styled.button`
   height: 50px;
   border-radius: 6px;
   border: none;
-  margin-top: 27px;
   background: linear-gradient(
     156.07deg,
     rgba(58, 163, 245, 0.86) -10.81%,
@@ -143,7 +144,7 @@ export const Button = styled.button`
   );
   border-radius: 6px;
   text-align: center;
-  margin: 27px 88px 0 88px;
+  margin: 25px 88px 0 88px;
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
