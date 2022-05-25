@@ -23,6 +23,7 @@ import { Container, ContainerBackgrounds, ContainerItems, H1, Label, Input, Butt
 
 
 
+
 function Login() {
 
   const { putUserData } = useUser()
@@ -46,8 +47,8 @@ function Login() {
 
 
   const schema = Yup.object().shape({
-    email: Yup.string().email("Digite um E-mail válido").required("O E-mail é Obrigatorio"),
-    password: Yup.string("Digite uma senha válida").required("A Senha é Obrigatoria").min(6, "A senha deve ter pelo menos 6 digitos"),
+    email: Yup.string().email("Digite um E-mail válido").required("O E-mail é Obrigatorio").min(5,'Minimo de 5 letras/números').max(100),
+    password: Yup.string("Digite uma senha válida").required("A Senha é Obrigatoria").min(8, "A senha deve ter pelo menos 8 digitos").max(60),
   })
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
@@ -86,6 +87,7 @@ function Login() {
           <Label error={loginFail}>E-mail ou Celular </Label>
           <Input type="email"  {...register("email")} error={errors.email?.message || loginFail}></Input>
 
+
           <Label error={loginFail}>Senha</Label>
           <Input {...register("password")}
            type={values.showPassword ? "text" : "password"}
@@ -100,8 +102,15 @@ function Login() {
                  {values.showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                </IconButton>
              </InputAdornment>
-          
-
+           
+           {errors.email?.message || errors.password?.message && 
+           <div className='errorInput'>
+           <div id='containerError'></div>
+           <img src={Error} alt="icon-error"></img>
+           <p>Verifique o email ou senha!</p>
+         </div> 
+         }
+      
           {loginFail &&
             <div className='errorInput'>
               <div id='containerError'></div>

@@ -3,29 +3,27 @@ import * as Yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
-import { useUser } from '../../hooks/UserContext'
+
 import apiBrasilFone from "../../services/api";
 import { Link } from 'react-router-dom'
 import ReactPhone from '../../components/PhoneReact';
 
-
-
 import Logo from '../../assets/marca-disparopro.svg'
 import Background2 from '../../assets/background2.png'
-import Icon from '../../assets/icon-eye.png'
 
-import { Container ,ContainerBackgrounds, ContainerItems, H1, Label, Input,InputTerms , PolicyPrivacy, TextOffer , InputOffer1 , InputOffer2, LabelRadio ,Button, SignIn, ErrorMessage , SignInText } from './styles'
+
+import { Container ,ContainerBackgrounds, ContainerItems, H1, Label, Input ,InputTerms , PolicyPrivacy, TextOffer , InputOffer1 , InputOffer2, LabelRadio ,Button, SignIn, ErrorMessage , SignInText } from './styles'
 
 
 
 function Register() {
 
-  const {putUserData } = useUser()
+  
 
   const schema = Yup.object().shape({
     name: Yup.string().required("Nome é obrigatorio"),
     email: Yup.string().email("Digite um e-mail válido").required("O e-mail é obrigatorio"),
-    number: Yup.string().required('Número obrigatorio').min(8,'Telefone precisa ter no mínimo 9 caracteres'),
+    number: Yup.number().notRequired("è obrigatorio").min(5,'Telefone precisa ter no mínimo 11 digitos com estados').max(13,'Informe o número correto'),
     password: Yup.string("Digite uma senha válida").required("A Senha é obrigatoria").min(6,"A senha deve ter pelo menos 6 digitos"),
     confirmPassword: Yup.string("Digite uma senha válida").required("A Senha é obrigatoria").oneOf([Yup.ref('password')], 'As senhas devem ser iguais'),
   })
@@ -35,23 +33,27 @@ function Register() {
 
 
   const onSubmit = async clientData => {
-    const { data } = await toast.promise(
-      apiBrasilFone.post('users', {
+    try {
+      const { status } = await apiBrasilFone.post('users', {
         name: clientData.name,
         email: clientData.email,
-        number: clientData.string,
+        number: clientData.number,
         password: clientData.password
-      }),
-      {
-        pending: 'Verificando seus dados',
-        success: 'Seja vindo(a)',
-        error: 'Verifique seu email e senha🤯'
+      }, { validateStatus: () => true }
+      )
+      if(status === 201 || status === 200){
+        toast.success('Cadastro criado com sucesso')
+      } else if(status === 409 ){
+        toast.error('Email já cadastrado! Faça login para acessar')
+      }  else {
+        throw new Error ()
       }
-
-    )
-   
-    putUserData(data)
-   
+    
+    }
+    catch(err){
+      toast.error("Falha no sistema! Tente novamente")
+    }
+    
   }
 
 
@@ -79,7 +81,8 @@ function Register() {
 
          
           <Label>Número</Label>
-          <ReactPhone  {...register("number")} error={errors.number?.message}></ReactPhone>
+   
+          <ReactPhone  type="number" {...register("number")} error={errors.number?.message}></ReactPhone>
           <ErrorMessage>{errors.number?.message}</ErrorMessage>
 
           <Label>Senha</Label>

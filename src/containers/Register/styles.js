@@ -51,7 +51,7 @@ export const ContainerItems = styled.div`
 `;
 
 export const H1 = styled.p`
-  padding-top: 64px;
+  padding-top: 58px;
   padding-bottom: 32px;
   font-style: normal;
   font-weight: 700;
@@ -83,8 +83,9 @@ export const Input = styled.input`
 
 export const ErrorMessage = styled.p`
   margin-left: 48px;
+  margin-bottom: 4px;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 16px;
   color: #cc1717;
   margin-top: 6px;
@@ -96,10 +97,9 @@ export const InputTerms = styled.input`
 `;
 export const PolicyPrivacy = styled.p`
   cursor: pointer;
-  position: absolute;
-  top: 487px;
-  left: 82px;
-
+  margin-bottom: 5px;
+  margin-left: 70px;
+  margin-top: -15px;
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -206,7 +206,6 @@ export const SignInText = styled.p`
     line-height: 21px;
     text-align: center;
     text-decoration-line: none;
-
     color: #2a5178;
   }
 
