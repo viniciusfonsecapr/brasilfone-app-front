@@ -23,9 +23,10 @@ function Register() {
   const schema = Yup.object().shape({
     name: Yup.string().required("Nome é obrigatorio"),
     email: Yup.string().email("Digite um e-mail válido").required("O e-mail é obrigatorio"),
-    number: Yup.number().notRequired("è obrigatorio").min(5,'Telefone precisa ter no mínimo 11 digitos com estados').max(13,'Informe o número correto'),
+    number: Yup.number().notRequired("Número é obrigatorio").min(5,'Telefone precisa ter no mínimo 11 digitos com estados').max(13,'Informe o número correto'),
     password: Yup.string("Digite uma senha válida").required("A Senha é obrigatoria").min(6,"A senha deve ter pelo menos 6 digitos"),
     confirmPassword: Yup.string("Digite uma senha válida").required("A Senha é obrigatoria").oneOf([Yup.ref('password')], 'As senhas devem ser iguais'),
+    terms: Yup.boolean().required("Termos são obrigatorios"),
   })
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
@@ -38,7 +39,8 @@ function Register() {
         name: clientData.name,
         email: clientData.email,
         number: clientData.number,
-        password: clientData.password
+        password: clientData.password,
+        terms: clientData.true,
       }, { validateStatus: () => true }
       )
       if(status === 201 || status === 200){
@@ -81,8 +83,8 @@ function Register() {
 
          
           <Label>Número</Label>
-   
-          <ReactPhone  type="number" {...register("number")} error={errors.number?.message}></ReactPhone>
+          <ReactPhone  id="phone"  type="tel" {...register("number")} error={errors.number?.message}></ReactPhone>
+          
           <ErrorMessage>{errors.number?.message}</ErrorMessage>
 
           <Label>Senha</Label>
@@ -92,11 +94,16 @@ function Register() {
 
           <Label>Repetir Senha</Label>
           <Input type="password" {...register("confirmPassword")} error={errors.confirmPassword?.message} />
-          
+          {Input.password !== Input.confirmPassword && 
+           <div>
+           <p>Verifique se as senhas são iguais!</p>
+         </div> 
+         }
           <ErrorMessage>{errors.confirmPassword?.message}</ErrorMessage>
 
-          <InputTerms type="radio"></InputTerms>
+          <InputTerms type="radio" {...register("terms")} error={errors.terms?.message}></InputTerms>
           <PolicyPrivacy>Eu li e aceito a politica de privacidade da Disparo Pro</PolicyPrivacy>
+          
 
           <TextOffer>Quero receber ofertas,novidades, conteúdos informativos e publicitários da Disparo Pro</TextOffer>
           <InputOffer1 type="radio"></InputOffer1><LabelRadio>Sim</LabelRadio>

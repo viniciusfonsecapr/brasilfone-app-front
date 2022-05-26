@@ -11,17 +11,11 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-
-
-
-
 import Logo from '../../assets/marca-disparopro.svg'
 import Background2 from '../../assets/background2.png'
 import Error from '../../assets/error.png'
 
 import { Container, ContainerBackgrounds, ContainerItems, H1, Label, Input, Button, SignUp, SignUpText } from './styles'
-
-
 
 
 function Login() {
@@ -47,7 +41,7 @@ function Login() {
 
 
   const schema = Yup.object().shape({
-    email: Yup.string().email("Digite um E-mail válido").required("O E-mail é Obrigatorio").min(5,'Minimo de 5 letras/números').max(100),
+    email: Yup.string().email("Digite um E-mail válido").required().min(5,'Minimo de 5 letras/números').max(100),
     password: Yup.string("Digite uma senha válida").required("A Senha é Obrigatoria").min(8, "A senha deve ter pelo menos 8 digitos").max(60),
   })
   const { register, handleSubmit, formState: { errors } } = useForm({

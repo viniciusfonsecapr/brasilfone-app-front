@@ -51,11 +51,14 @@ export const ContainerItems = styled.div`
 `;
 
 export const H1 = styled.p`
-  padding-top: 58px;
-  padding-bottom: 32px;
+  padding-top: ${(props) =>
+    props.error ? "58px" : "18px"};
+  padding-bottom: ${(props) =>
+    props.error ? "32px" : "15px"};
   font-style: normal;
   font-weight: 700;
-  font-size: 26px;
+  font-size: ${(props) =>
+    props.error ? "26px" : "20px"};
   line-height: 30px;
   text-align: center;
   color: #123d68;
