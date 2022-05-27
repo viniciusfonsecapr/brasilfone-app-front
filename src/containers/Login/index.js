@@ -97,7 +97,7 @@ function Login() {
                </IconButton>
              </InputAdornment>
            
-           {errors.email?.message || errors.password?.message && 
+           {(errors.email?.message || errors.password?.message) && 
            <div className='errorInput'>
            <div id='containerError'></div>
            <img src={Error} alt="icon-error"></img>
