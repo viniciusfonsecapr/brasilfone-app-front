@@ -32,7 +32,7 @@ export const ContainerItems = styled.div`
   background: #e5e5e5;
   box-shadow: 3px 3px 11px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
-  margin: 0 275px 279px 269px;
+  margin: 0 275px 279px 145px;
 
   .errorInput {
     margin-top:-10px;
@@ -84,7 +84,7 @@ export const ContainerItems = styled.div`
   }
   form {
     div {
-      margin-left: 48px;
+      margin-left: 45px;
       margin-top: 10px;
       width: 320px;
       height: 50px;
