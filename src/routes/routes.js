@@ -11,7 +11,7 @@ function Routes(){
     return (
         <Router>
             <Switch>
-                <Route component={Login} path="/login"></Route>
+                <Route component={Login} path="/"></Route>
                 <Route component={Register} path="/register"></Route>
                 <Route component={Repair} path="/repair"></Route>
             </Switch>
